@@ -1,21 +1,20 @@
 {
-	"numOfDisease":2,
-	"diseaseList":[
-		{
-			"index":0,
-			"name":"YanXB",
-			"description":"YanXB",
-			"numOfSymptom":1,
-			"symptom":["YanXB"],
-			"solution":"YanXB",
-		},
-		{
-			"index":1,
-			"name":"SongXW",
-			"description":"SongXW",
-			"numOfSymptom":1,
-			"symptom":["SongXW"],
-			"solution":"SongXW",
-		},
-	]
-};
+    "numOfDisease": 2,
+    "diseaseList": [
+    {
+        "index": 0,
+        "name": "YanXB",
+        "description": "love",
+        "numOfSymptom": 2,
+        "symptom": ["sick","songxw"],
+        "solution": "SongXW"
+    },
+    {
+        "index": 1,
+        "name": "SongXW",
+        "description": "SongXW",
+        "numOfSymptom": 2,
+        "symptom": ["songxw","iloveyou"],
+        "solution": "SongXW"
+    }]
+}
