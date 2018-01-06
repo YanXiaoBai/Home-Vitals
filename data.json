@@ -1,0 +1,21 @@
+{
+	"numOfDisease":2,
+	"diseaseList":[
+		{
+			"index":0,
+			"name":"YanXB",
+			"description":"YanXB",
+			"numOfSymptom":1,
+			"symptom":["YanXB"],
+			"solution":"YanXB",
+		},
+		{
+			"index":1,
+			"name":"SongXW",
+			"description":"SongXW",
+			"numOfSymptom":1,
+			"symptom":["SongXW"],
+			"solution":"SongXW",
+		},
+	]
+};
