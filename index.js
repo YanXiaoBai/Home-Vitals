@@ -4,10 +4,12 @@ $(document).ready(function() {
     $(".input_new").hide();
     $(".add_new").click(function() {
         if (nowState == 1) {
-            document.getElementById("input_list").value = document.getElementById("input_list").value.toLowerCase();
-            symptomList.push(document.getElementById("input_list").value);
-            $(".input_new").before("<div class='now_symptom'>" + document.getElementById("input_list").value + "</div>")
-            document.getElementById("input_list").value = "";
+            if (document.getElementById("input_list").value != "") {
+                document.getElementById("input_list").value = document.getElementById("input_list").value.toLowerCase();
+                symptomList.push(document.getElementById("input_list").value);
+                $(".input_new").before("<div class='now_symptom'>" + document.getElementById("input_list").value + "</div>")
+                document.getElementById("input_list").value = "";
+            }
             $(".input_new").hide();
             nowState = 0;
             $(".add_new").empty();
@@ -23,7 +25,10 @@ $(document).ready(function() {
     $(".submit").click(function() {
         $("#finding_page").show();
         $("#search_page").hide();
-
+        $(".error").hide();
+        $(".go_back").click(function(){
+        	window.location="index.html"
+        });
         function linkOfSymptom(numOfMatch, indexInJSON) {
             this.numOfMatch = numOfMatch;
             this.indexInJSON = indexInJSON;
@@ -38,7 +43,7 @@ $(document).ready(function() {
             url: "data.json",
             async: false,
             success: function(data, status) {
-                listOfDisease=data;
+                listOfDisease = data;
             }
         });
         for (var i = 0; i < listOfDisease.numOfDisease; i++) {
@@ -53,12 +58,16 @@ $(document).ready(function() {
                 }
             }
         }
-        for(i=0;i<listOfCompare.length;i++){
-        	console.log("!")
-        	if(listOfCompare[i].numOfMatch==0){
-        		break;
-        	}
-        	$(".rest").append("<div class='answer'><div class='name'>"+listOfDisease.diseaseList[listOfCompare[i].indexInJSON].name+"</div><div class='description'>Description:"+listOfDisease.diseaseList[listOfCompare[i].indexInJSON].description+"</div><div class='symptom'>Symptom:"+listOfDisease.diseaseList[listOfCompare[i].indexInJSON].symptom.toString()+"</div><div class='solution'>Solution:"+listOfDisease.diseaseList[listOfCompare[i].indexInJSON].solution+"</div></div>")
+        var isNull=true;
+        for (i = 0; i < listOfCompare.length; i++) {
+            if (listOfCompare[i].numOfMatch == 0) {
+                break;
+            }
+            isNull=false;
+            $(".rest").append("<div class='answer'><div class='name'>" + listOfDisease.diseaseList[listOfCompare[i].indexInJSON].name + "</div><div class='description'>Description:&nbsp;" + listOfDisease.diseaseList[listOfCompare[i].indexInJSON].description + "</div><div class='symptom'>Symptom:&nbsp;" + listOfDisease.diseaseList[listOfCompare[i].indexInJSON].symptom.toString() + "</div><div class='solution'>Solution:&nbsp;" + listOfDisease.diseaseList[listOfCompare[i].indexInJSON].solution + "</div></div>")
+        }
+        if(isNull==true){
+        	$(".error").show();
         }
         // for (i = 0; i < listOfCompare.length; i++) {
         //     console.log(listOfCompare[i].indexInJSON);
